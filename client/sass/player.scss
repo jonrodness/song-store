@@ -1,0 +1,21 @@
+.player {
+	padding: 7px;
+	background-color: rgb(237, 237, 237);
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	border-top: 1px rgb(0, 0, 0) solid;
+
+	audio {
+		display: inline;
+	}
+}
+
+#app-controls {
+	display: inline;
+	float: right;
+	
+	>div {
+		display: inline;		
+	}
+}

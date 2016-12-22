@@ -1,0 +1,46 @@
+$navbar-color: rgb(50, 50, 50);
+$hover-color: rgb(60,60,60);
+$font-color: rgb(255, 255, 255);
+
+.navbar .navbar-nav>li>a {
+	color: $font-color;
+}
+
+.dropdown-menu>li>a, .dropdown-menu>li>a:hover, li>a {
+	color: $font-color;
+	font-size: 17px;
+}
+
+.navbar {
+	background-color: $navbar-color;
+	border: none;
+	border-radius: 0;
+}
+
+.navbar .navbar-nav>li:hover,
+.dropdown-menu>li>a:focus, 
+.dropdown-menu>li>a:hover {
+	background-color: $hover-color;
+}
+
+.navbar-default .navbar-nav>.dropdown.open>a {
+	background-color: $hover-color;
+	color: $font-color;
+}
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+	color: $font-color;
+}
+
+.dropdown-menu {
+	background-color: $navbar-color;
+	border: none;
+}
+
+.navbar .navbar-plays.new-plays {
+	background-color: rgb(30, 185, 238);
+	border-radius: 1px;
+}
+
+.navbar .navbar-plays.new-plays a.navbar-plays-text {
+	color: black;
+}
