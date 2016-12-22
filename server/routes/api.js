@@ -6,5 +6,6 @@ var userController = require('../controllers/UserController');
 router.get('/artists/:artistId', userController.getArtist);
 router.get('/artists/:artistId/tracks', userController.getArtistTracks);
 router.get('/artists', userController.getArtistList);
+router.get('/song', userController.getSong);
 
 module.exports = router;

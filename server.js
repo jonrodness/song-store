@@ -10,6 +10,17 @@ var publicPath = path.resolve(__dirname, 'static');
 var isProduction = process.env.NODE_ENV === 'production';
 var port = isProduction ? process.env.PORT : 3000;
 
+var passport = require('passport');
+var session = require('express-session');
+var mongoose = require('mongoose');
+var Sequelize = require('sequelize');
+
+var authRoutes = require('./server/routes/auth');
+var indexRoutes = require('./server/routes/index');
+var apiRoutes = require('./server/routes/api');
+
+var AWS = require('./server/config/aws');
+
 if (!isProduction) {
 	// do not use hot middleware during production
 	var compiler = webpack(webpackConfig);
@@ -33,8 +44,39 @@ if (!isProduction) {
 	}));
 }
 
+AWS.init();
+
+// TODO: update for production
+mongoose.connect('mongodb://localhost/song-store');
+
+app.use(session({
+	secret: 'make random later',
+	resave: false, 
+	saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
+
+// authorize api requests
+// var authCheckMiddleware = require('./server/auth-check')(config);
+// app.use('/api', authCheckMiddleware);
+
+// routing
+// var apiRoutes = require('./server/routes/api');
+app.use('/', indexRoutes);
+app.use('/api', apiRoutes);
+app.use('/auth', authRoutes);
+
 app.use(express.static(publicPath));
 
+// by default send index.html
+app.get('*', function (request, response){
+  response.sendFile(path.resolve(__dirname, 'static', 'index.html'))
+})
+
+// require('./models')(config);
+// require('./passport')(config);
+
 app.listen(port, function() {
-	console.log('Mutu listening on port ' + port);
+	console.log('Song Store listening on port ' + port);
 });

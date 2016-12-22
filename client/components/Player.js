@@ -26,7 +26,7 @@ class Player extends React.Component {
 	}
 	
 	render() {
-		let source = this.state.stream_url
+		let source = "/api/song"
 
 		return (
 			<div className="player">
