@@ -19,8 +19,6 @@ var authRoutes = require('./server/routes/auth');
 var indexRoutes = require('./server/routes/index');
 var apiRoutes = require('./server/routes/api');
 
-var AWS = require('./server/config/aws');
-
 if (!isProduction) {
 	// do not use hot middleware during production
 	var compiler = webpack(webpackConfig);
@@ -43,8 +41,6 @@ if (!isProduction) {
 		heartbeat: 10 * 1000
 	}));
 }
-
-AWS.init();
 
 // TODO: update for production
 mongoose.connect('mongodb://localhost/song-store');

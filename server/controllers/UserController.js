@@ -1,7 +1,6 @@
 
 var User = require('../models/User');
 var Track = require('../models/Track');
-var AWS = require('../config/aws');
 
 module.exports = {
 	getArtist: function(req, res) {
@@ -45,29 +44,5 @@ module.exports = {
 				res.json(tracks);
 			}
 		});
-	},
-
-	getSong: function(req, res) {
-		var client = AWS.getClient();		
-		
-		var s3Params = {
-			Bucket: 'songstore',
-			Key: 'Trainslide.mp3'
-		}
-
-		var downloadStream = client.downloadFile(s3Params);
-		
-		downloadStream.on('error', function(err) {
-			console.log('Download failed: ' + err.stack);
-		});
-
-		downloadStream.on('httpHeaders', function(status, headers, resp) {
-			res.set({
-				'Content-Type': headers['content-type']
-			});
-		});
-
-		downloadStream.pipe(res);
 	}
-
 }

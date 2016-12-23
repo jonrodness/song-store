@@ -16,6 +16,14 @@ $font-color: rgb(255, 255, 255);
 	border: none;
 	border-radius: 0;
 	margin: 0;
+	letter-spacing: 1.2px;
+   font-family: 'Quicksand', sans-serif;
+}
+
+a.navbar-brand {
+   background: -webkit-linear-gradient(left, rgb(153, 255, 253), rgb(243, 247, 168));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .navbar .navbar-nav>li:hover,
