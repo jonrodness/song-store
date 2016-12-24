@@ -54,7 +54,7 @@ app.use(cookieParser('music'));
 app.use(bodyParser());
 app.use(session({ secret: 'music' }));
 app.use(passport.initialize());
-app.use(passport.session({ secret: 'music' }));
+app.use(passport.session());
 
 // authorize api requests
 // var authCheckMiddleware = require('./server/auth-check')(config);

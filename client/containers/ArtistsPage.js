@@ -10,13 +10,15 @@ class ArtistsPage extends React.Component {
 		}
 	}
 	componentDidMount() {
-		fetch('/api/artists/')
-			.then(response => response.json())
-			.then(json => {
-				this.setState({
-					artists: json
-				})
+		fetch('/api/artists/', {
+			credentials: 'include'
+		})
+		.then(response => response.json())
+		.then(json => {
+			this.setState({
+				artists: json
 			})
+		})
 	}
 	render() {
 		return(

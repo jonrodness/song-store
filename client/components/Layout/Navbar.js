@@ -43,6 +43,7 @@ class AppNavbar extends React.Component {
 	render() {
 		let signupTitle = "Sign up"
 		let loginTitle = "Login"
+		let myProfileURL = "/artists/" + auth.getToken()
 		return (
 			<div>
 			  <Navbar className='navbar'>
@@ -58,13 +59,7 @@ class AppNavbar extends React.Component {
 			        {
 			        	this.props.isUserLoggedIn ? 
 			        	(
-			        	<NavDropdown eventKey={3} title="My Profile" id="basic-nav-dropdown">
-				          <MenuItem eventKey={3.1}>Action</MenuItem>
-				          <MenuItem eventKey={3.2}>Another action</MenuItem>
-				          <MenuItem eventKey={3.3}>Something else here</MenuItem>
-				          <MenuItem divider />
-				          <MenuItem eventKey={3.3}>Separated link</MenuItem>
-				        </NavDropdown>			        	
+			        	<NavItem eventKey={3} href={myProfileURL}>My Tracks</NavItem>			        	
 			        	) 
 			        	: null
 			    	}

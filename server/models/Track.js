@@ -13,8 +13,8 @@ var Schema = mongoose.Schema;
 
 var TrackSchema = new Schema({
 	title: String,
-	stream_url: String,
-	active: Boolean
+	active: { type: String, default: true },
+	dateAdded: { type: Date, default: Date.now }
 });
 
 module.exports = mongoose.model('Track', TrackSchema);

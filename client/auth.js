@@ -1,5 +1,5 @@
 module.exports = {
-	/** Save token in local storage */
+	/** Save token in local storage - token is user id */
 	authenticateUser(token) {
 		localStorage.setItem('token', token)
 		this.onChange(true)		

@@ -10,7 +10,7 @@ class ArtistTracksChartContainer extends Component {
 	}
 
 	componentDidMount() {
-		const url = '/api/artists/' + this.props.id + '/tracks'
+		const url = '/api/tracks/?user_id=' + this.props.id
 		fetch(url)
 			.then(response => response.json())
 			.then(json => {

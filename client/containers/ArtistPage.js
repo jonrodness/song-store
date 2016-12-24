@@ -6,8 +6,7 @@ class ArtistPage extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			name: undefined,
-			link: undefined				
+			name: ""
 		}
 	}
 
@@ -18,9 +17,7 @@ class ArtistPage extends React.Component {
 			contentType: "application/json",
 			success: (data) => {
 				this.setState({
-					name: data.name,
-					link: data.link
-
+					name: data.name
 				})			
 			},
 			error: (xhr, status, err) => {

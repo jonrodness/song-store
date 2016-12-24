@@ -1,27 +1,39 @@
 var Track = require('../models/Track');
+var User = require('../models/User');
+
 var s3 = require('../config/awsS3');
 
 module.exports = {
 	upload: function(req, res) {
+		var user = req.user;
 		var file = req.file;
-		
-		var params = {
-				Bucket: 'songstore',
-				Key: file.originalname,
-				Body: req.file.buffer
-		};
 
-		s3.putObject(params, function(err) {
+		// Save the track as a subdoc of user
+		var length = user.tracks.push({ 
+			title: file.originalname 
+		});
+
+		var track = user.tracks[length - 1];
+
+		user.save(function(err, user) {
 			if (err) {
-				res.status(400).send('Error: ' + err);
+				res.status(400).send('Error: ' + err);				
 			} else {
-				res.status(201).send('Successfully uploaded track');
-			}
-		})
+				var params = {
+					Bucket: 'songstore',
+					Key: track._id.toString() + '.mp3',
+					Body: req.file.buffer
+				};
 
-		// var uploader = client.uploadFile(s3Params);
-		
-		console.log(">>>>>>>>>>>POST");
+				s3.putObject(params, function(err) {
+					if (err) {
+						res.status(400).send('Error: ' + err);
+					} else {
+						res.status(201).send('Successfully uploaded track');
+					}
+				});			
+			}
+		});
 	},
 
 	get: function(req, res) {

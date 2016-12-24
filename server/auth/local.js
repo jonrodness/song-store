@@ -33,7 +33,7 @@ passport.use('local-login', new LocalStrategy(
 
 passport.use('local-signup', new LocalStrategy(
 	function(username, password, done) {
-		process.nextTick(function() {
+		// process.nextTick(function() {
 		
 			var searchQuery = {
 				username: username
@@ -60,7 +60,7 @@ passport.use('local-signup', new LocalStrategy(
 					});
 				}
 			});
-		});
+		// });
 	}
 ));
 

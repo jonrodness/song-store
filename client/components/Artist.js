@@ -1,11 +1,10 @@
 import ArtistTracksChartContainer from '../containers/ArtistTracksChartContainer'
 import React, { PropTypes } from 'react'
 
-const Artist = ({ id, name, link }) => {
+const Artist = ({ id, name }) => {
 	return(
 		<div>
 			<h1>{name}</h1>
-			<div id='profile-image'></div>
 			<ArtistTracksChartContainer id={id} />
 		</div>
 	)

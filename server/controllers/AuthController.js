@@ -5,6 +5,7 @@
 
  module.exports = {
 	loginSuccess: function(req, res) {
-		res.redirect('/oauthcallback/:true');
+		var id = req.user._id.toString();
+		res.redirect('/oauthcallback/' + id);
 	}
 }
