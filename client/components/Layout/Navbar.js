@@ -83,9 +83,9 @@ class AppNavbar extends React.Component {
 			  </Navbar>
 
 			  <Modal className="login-modal" show={this.state.showLoginModal} close={this.closeLoginModal} title={loginTitle}>
-	            <form>
+	            <form action="/auth/local-login" method="post">
 	              E-mail address:<br/>
-	              <input type="text" name="email" />
+	              <input type="text" name="username" />
 	              <br/>
 	              Password:<br/>
 	              <input type="text" name="password" />
@@ -96,15 +96,14 @@ class AppNavbar extends React.Component {
 		          <a href='/auth/soundcloud'><input type="image" src="http://connect.soundcloud.com/2/btn-connect-sc-s.png" /></a>
 		          <hr/>
 		          <h4>Sign up with your e-mail</h4>
-		          <form>
+		          <form action="/auth/local-signup" method="post">
 		            User name:<br/>
 		            <input type="text" name="username" />
 		            <br/>
-		            E-mail address:<br/>
-		            <input type="text" name="email" />
-		            <br/>
 		            Password:<br/>
-		            <input type="text" name="password" />
+		            <input type="password" name="password" />
+		            <br />
+		            <input type="submit" value="Sign Up" />
 		          </form>
               </Modal>
 
