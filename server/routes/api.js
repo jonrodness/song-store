@@ -10,7 +10,7 @@ var trackController = require('../controllers/TrackController');
 
 /* UserController */
 router.get('/artists/:artistId', userController.getArtist);
-router.get('/artists/:artistId/tracks', soundcloudUserController.getArtistTracks);
+router.get('/artists/:userId/tracks', userController.getArtistTracks);
 router.get('/artists', soundcloudUserController.getArtistList);
 
 router.get('/song', trackController.get);

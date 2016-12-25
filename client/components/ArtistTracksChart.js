@@ -53,15 +53,16 @@ class ArtistTracksChart extends Component  {
 								{this.props.tracks[props.rowIndex].title}
 							</Cell>
 						)}
-						width={200}
+						width={300}
 						flexGrow={1} />
 					<Column
-						header={<Cell>Details</Cell>}
+						header={<Cell>Date Added</Cell>}
 						cell={props => (
 							<Cell {...props}>
+								{this.props.tracks[props.rowIndex].dateAdded}							
 							</Cell>
 						)}
-						width={200}
+						width={50}
 						flexGrow={1} />
 				</Table>
 			</div>	

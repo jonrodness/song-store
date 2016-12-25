@@ -18,5 +18,26 @@ module.exports = {
 				});
 			}
 		});
-	}
+	},
+
+	getArtistTracks: function(req, res) {
+		var userId = req.params.userId;
+		// TODO: should search by app ID
+		User.findOne({_id: userId}, function(err, user) {
+			if(err) {
+				res.status(400);
+				res.send();	
+			} else {
+				var tracks = user.tracks.map(function(track) {
+					return {
+						title: track.title,
+						id: track._id.toString(),
+						dateAdded: track.dateAdded
+					}
+				});
+
+				res.json(tracks);
+			}
+		});
+	}	
 }

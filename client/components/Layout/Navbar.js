@@ -49,7 +49,7 @@ class AppNavbar extends React.Component {
 			  <Navbar className='navbar'>
 			    <Navbar.Header>
 			      <Navbar.Brand>
-			        <IndexLink to='/'>Song Store</IndexLink>
+			        <IndexLink to='/'>Song Stash</IndexLink>
 			      </Navbar.Brand>
 			      <Navbar.Toggle />
 			    </Navbar.Header>

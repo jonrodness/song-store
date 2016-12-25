@@ -8,7 +8,7 @@ module.exports = {
 		var user = req.user;
 		var file = req.file;
 
-		// Save the track as a subdoc of user
+		// Save the track as a subdoc of User
 		var length = user.tracks.push({ 
 			title: file.originalname 
 		});
