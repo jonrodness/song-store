@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Table, Column, Cell } from 'fixed-data-table'
 import Dimensions from 'react-dimensions'
+import { connect } from 'react-redux'
+import { setPlayTrack } from '../actions'
 
 class UploadFileForm extends Component {
 	constructor(props) {
@@ -49,8 +51,8 @@ class ArtistTracksChart extends Component  {
 					<Column
 						header={<Cell>Title</Cell>}
 						cell={props => (
-							<Cell {...props}>
-								{this.props.tracks[props.rowIndex].title}
+							<Cell {...props} onClick={this.onSelectTrack(this.props.tracks[props.rowIndex])}>
+								<a href='#'> {this.props.tracks[props.rowIndex].title} </a>
 							</Cell>
 						)}
 						width={300}
@@ -96,6 +98,25 @@ ArtistTracksChart.propTypes = {
 		title: PropTypes.string.isRequired,
 	}).isRequired).isRequired
 }
+
+
+function mapStateToProps(state) {
+  return {}
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    onSelectTrack: function(track) {
+      	dispatch(setPlayTrack(track))
+    }
+  }
+}
+
+const VisibleTodoList = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ArtistTracksChart)
+
 
 // Use react-dimensions to make component responsive
 export default Dimensions({className:'react-dimensions-chart-wrapper', elementResize: true})(ArtistTracksChart)

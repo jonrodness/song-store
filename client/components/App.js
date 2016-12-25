@@ -12,6 +12,8 @@ import Home from './Home'
 import OAuth from './OAuth'
 import auth from '../auth'
 
+import app from '../reducers'
+
 // promise polyfill for whole app
 import 'es6-promise'
 
@@ -23,7 +25,8 @@ var NoMatch = React.createClass({
 	}
 });
 
-const root = document.getElementById('root');
+const root = document.getElementById('root')
+const store = createStore(app)
 
 function requireAuth(nextState, replace) {
 	if (!Auth.isUserLoggedIn()) {
@@ -39,15 +42,17 @@ function confirmAuth(nextState, replace) {
 }
 
 ReactDOM.render(
-	<Router history={browserHistory}>
-		<Route path='/' component={Layout}>
-			<IndexRoute component={Home}></IndexRoute>
-			<Route path='oauthcallback/:result' component={OAuth} />
-			<Route path='player' component={Player} />
-			<Route path='artists/:id' component={ArtistPage} />
-			<Route path='artists' component={ArtistsPage} />
-		</Route>
-		<Route path='*' component={NoMatch} />
-	</Router>,
+	<Provider store={store}>
+		<Router history={browserHistory}>
+			<Route path='/' component={Layout}>
+				<IndexRoute component={Home}></IndexRoute>
+				<Route path='oauthcallback/:result' component={OAuth} />
+				<Route path='player' component={Player} />
+				<Route path='artists/:id' component={ArtistPage} />
+				<Route path='artists' component={ArtistsPage} />
+			</Route>
+			<Route path='*' component={NoMatch} />
+		</Router>
+	</Provider>,
 	root
 );
