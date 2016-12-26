@@ -1,8 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Table, Column, Cell } from 'fixed-data-table'
 import Dimensions from 'react-dimensions'
-import { connect } from 'react-redux'
-import { setPlayTrack } from '../actions'
 
 class UploadFileForm extends Component {
 	constructor(props) {
@@ -22,7 +20,6 @@ class UploadFileForm extends Component {
 	}
 }
 
-
 class ArtistTracksChart extends Component  {
 	constructor(props) {
 		super(props)
@@ -32,7 +29,6 @@ class ArtistTracksChart extends Component  {
 		}
 
 		this.handleFileChange = this.handleFileChange.bind(this)
-		this.handleSubmit = this.handleSubmit.bind(this)
 	}
 
 	render() {
@@ -40,7 +36,6 @@ class ArtistTracksChart extends Component  {
 			<div>
 				<UploadFileForm
 					handleFileChange={this.handleFileChange}
-					handleSubmit={this.handleSubmit}
 					uploadFile={this.uploadFile} />
 				<Table
 					rowsCount={this.props.tracks.length}
@@ -51,8 +46,12 @@ class ArtistTracksChart extends Component  {
 					<Column
 						header={<Cell>Title</Cell>}
 						cell={props => (
-							<Cell {...props} onClick={this.onSelectTrack(this.props.tracks[props.rowIndex])}>
-								<a href='#'> {this.props.tracks[props.rowIndex].title} </a>
+							<Cell {...props}>
+								<input 
+									type='button' 
+									onClick={() => {this.props.onSelectTrack(this.props.tracks[props.rowIndex])}} 
+									value={this.props.tracks[props.rowIndex].title} >
+								</input>
 							</Cell>
 						)}
 						width={300}
@@ -77,46 +76,15 @@ class ArtistTracksChart extends Component  {
 		})
 		console.log("this state uplaod file" + this.state.uploadFile)
 	}
-
-	handleSubmit() {
-		var reader = new FileReader();
-
-		reader.onerror = function(err) {
-			console.log("Error reading file: " + err)
-		}
-
-		reader.onloadend = function(data) {
-
-		}
-
-	}	
 }
 
 ArtistTracksChart.propTypes = {
 	tracks: PropTypes.arrayOf(PropTypes.shape({
-		_id: PropTypes.string.isRequired,
+		id: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired,
-	}).isRequired).isRequired
+	}).isRequired).isRequired,
+	onSelectTrack: PropTypes.func.isRequired
 }
-
-
-function mapStateToProps(state) {
-  return {}
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    onSelectTrack: function(track) {
-      	dispatch(setPlayTrack(track))
-    }
-  }
-}
-
-const VisibleTodoList = connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ArtistTracksChart)
-
 
 // Use react-dimensions to make component responsive
 export default Dimensions({className:'react-dimensions-chart-wrapper', elementResize: true})(ArtistTracksChart)

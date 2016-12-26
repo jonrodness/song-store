@@ -1,5 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import ArtistTracksChart from '../components/ArtistTracksChart'
+import { connect } from 'react-redux'
+import { setPlayTrack } from '../actions'
 
 class ArtistTracksChartContainer extends Component {
 	constructor(props) {
@@ -7,6 +9,7 @@ class ArtistTracksChartContainer extends Component {
 		this.state = {
 			tracks: []
 		}
+		this.onSelectTrack = this.onSelectTrack.bind(this)
 	}
 
 	componentDidMount() {
@@ -21,10 +24,15 @@ class ArtistTracksChartContainer extends Component {
 			})
 		})
 	}
+    
+    onSelectTrack(track) {
+      	this.props.dispatch(setPlayTrack(track))
+    }
 
 	render() {
 		return(
-			<ArtistTracksChart {...this.state} />
+			<ArtistTracksChart {...this.state}
+			onSelectTrack={this.onSelectTrack} />
 		)
 	}
 }
@@ -33,4 +41,4 @@ ArtistTracksChartContainer.propTypes = {
 	id: PropTypes.string.isRequired
 }
 
-export default ArtistTracksChartContainer
+export default connect()(ArtistTracksChartContainer)

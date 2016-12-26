@@ -32,6 +32,6 @@ export function setPlayTrack(track) {
 		type: SET_PLAY_TRACK,
 		url: track.url,
 		title: track.title,
-		artistName: artistName
+		artistName: track.artistName
 	}
 }
