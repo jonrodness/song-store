@@ -28,7 +28,6 @@ class Layout extends React.Component {
 					{this.props.children}
 				</div>
 				<Player />
-				<Footer />
 			</div>
 		)
 	}

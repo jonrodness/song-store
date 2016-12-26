@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react'
 import { Table, Column, Cell } from 'fixed-data-table'
 import Dimensions from 'react-dimensions'
+import '../sass/artistTracksContainer.scss';
+import MdClose from 'react-icons/lib/md/close'
 
 class UploadFileForm extends Component {
 	constructor(props) {
@@ -9,10 +11,14 @@ class UploadFileForm extends Component {
 
 	render() {
 		return(
-			<form action='/api/track' method='post' encType='multipart/form-data'>
+			<form 
+				className='upload-form' 
+				action='/api/track' 
+				method='post' 
+				encType='multipart/form-data'>
 				<label>
-					Upload a file:
-					<input type='file' name='track' id='file-upload' defaultValue={this.props.uploadFile} onChange={this.props.handleFileChange}/>
+					Upload a track:
+					<input type='file' name='track' id='file-upload-btn' defaultValue={this.props.uploadFile} onChange={this.props.handleFileChange}/>
 				</label>
 				<input type='submit' value='Upload' />
 			</form>
@@ -47,11 +53,12 @@ class ArtistTracksChart extends Component  {
 						header={<Cell>Title</Cell>}
 						cell={props => (
 							<Cell {...props}>
-								<input 
-									type='button' 
+								<a 
 									onClick={() => {this.props.onSelectTrack(this.props.tracks[props.rowIndex])}} 
-									value={this.props.tracks[props.rowIndex].title} >
-								</input>
+									href='#' >
+									{this.props.tracks[props.rowIndex].title}
+								</a>
+								<input type='button' value='Remove' className='remove-btn'>MdClose</input>
 							</Cell>
 						)}
 						width={300}
@@ -74,7 +81,7 @@ class ArtistTracksChart extends Component  {
 		this.setState({
 			uploadFile: file
 		})
-		console.log("this state uplaod file" + this.state.uploadFile)
+		console.log("this state upload file" + this.state.uploadFile)
 	}
 }
 
@@ -82,6 +89,8 @@ ArtistTracksChart.propTypes = {
 	tracks: PropTypes.arrayOf(PropTypes.shape({
 		id: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired,
+		artistName: PropTypes.string.isRequired,
+		url: PropTypes.string.isRequired
 	}).isRequired).isRequired,
 	onSelectTrack: PropTypes.func.isRequired
 }

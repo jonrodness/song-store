@@ -11,10 +11,10 @@ var trackController = require('../controllers/TrackController');
 /* UserController */
 router.get('/artists/:artistId', userController.getArtist);
 router.get('/artists/:userId/tracks', userController.getArtistTracks);
-router.get('/artists', soundcloudUserController.getArtistList);
+router.get('/artists', userController.getArtistList);
 
-router.get('/song', trackController.get);
-
+/* TrackController */
+router.get('/track-stream/:trackId', trackController.get);
 router.post('/track', upload.single('track'), trackController.upload);
 
 module.exports = router;

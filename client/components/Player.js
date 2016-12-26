@@ -4,6 +4,7 @@ import PlayerControls from './PlayerControls';
 import '../sass/player.scss';
 import $ from 'jquery';
 import _ from 'lodash';
+import { connect } from 'react-redux'
 
 class AudioControls extends React.Component {
 	constructor(props) {
@@ -18,11 +19,6 @@ class AudioControls extends React.Component {
 class Player extends React.Component {
 	constructor(props) {
 		super(props);
-
-		this.state = {
-			currentTrackId: null,
-			stream_url: null
-		}
 	}
 	
 	render() {
@@ -30,11 +26,27 @@ class Player extends React.Component {
 
 		return (
 			<div className="player">
-				<AudioControls id="audio-player" onPlay={this.confirmConsumption} src={source}></AudioControls>
+				<AudioControls id="audio-player" onPlay={this.confirmConsumption} src={this.props.streamUrl}></AudioControls>
 				<PlayerControls />
 			</div>
 		)
 	}
 }
 
-export default Player;
+const mapStateToProps = function(state, ownProps) {
+	return {
+		streamUrl: state.playingTrack.url,
+		currentTrackId: state.playingTrack.id,
+		trackTitle: state.playingTrack.title,
+		artistName: state.playingTrack.artistName
+	}
+}
+
+Player.defaultProps = {
+	currentTrackId: "",
+	streamUrl: "",
+	trackTitle: "",
+	artistName: ""
+}
+
+export default connect(mapStateToProps)(Player);

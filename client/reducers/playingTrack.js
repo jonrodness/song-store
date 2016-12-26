@@ -11,7 +11,8 @@ const playingTrack = (state = {
 			return _.assign({}, state, {
 				url: action.url,
 				title: action.title,
-				artistName: action.artistName
+				artistName: action.artistName,
+				id: action.id
 			})
 		default:
 			return state

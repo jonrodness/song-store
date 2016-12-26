@@ -8,6 +8,8 @@ module.exports = {
 		var user = req.user;
 		var file = req.file;
 
+		// TODO: HANDLE no file
+
 		// Save the track as a subdoc of User
 		var length = user.tracks.push({ 
 			title: file.originalname 
@@ -17,17 +19,19 @@ module.exports = {
 
 		user.save(function(err, user) {
 			if (err) {
-				res.status(400).send('Error: ' + err);				
+				console.log('Error: ' + err);
+				res.status(400).send();				
 			} else {
 				var params = {
 					Bucket: 'songstore',
-					Key: track._id.toString() + '.mp3',
+					Key: track._id.toString(),
 					Body: req.file.buffer
 				};
 
 				s3.putObject(params, function(err) {
 					if (err) {
-						res.status(400).send('Error: ' + err);
+						console.log('Error: ' + err);						
+						res.status(400).send();
 					} else {
 						res.status(201).send('Successfully uploaded track');
 					}
@@ -37,9 +41,10 @@ module.exports = {
 	},
 
 	get: function(req, res) {
+		var trackId = req.params.trackId;
 		var params = {
 				Bucket: 'songstore',
-				Key: 'Trainslide.mp3'
+				Key: trackId
 		};
 
 		s3.getObject(params).createReadStream().pipe(res);	

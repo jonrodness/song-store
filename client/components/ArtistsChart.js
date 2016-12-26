@@ -21,12 +21,22 @@ class ArtistsChart extends Component  {
 					header={<Cell>Artist</Cell>}
 					cell={props => (
 						<Cell {...props}>
-							<Link to={'/artists/' + this.props.artists[props.rowIndex]._id}>{this.props.artists[props.rowIndex].SCUsername}</Link>
+							<Link to={'/artists/' + this.props.artists[props.rowIndex].id}>{this.props.artists[props.rowIndex].username}</Link>
 						</Cell>
 					)}
-					width={200}
+					width={400}
 					flexGrow={1}					
-				/>	
+				/>
+				<Column
+					header={<Cell>Number of Tracks</Cell>}
+					cell={props => (
+						<Cell {...props}>
+							{ this.props.artists[props.rowIndex].tracksLength }
+						</Cell>
+					)}
+					width={10}
+					flexGrow={1}					
+				/>					
 			</Table>	
 		)
 	}
@@ -34,8 +44,9 @@ class ArtistsChart extends Component  {
 
 ArtistsChart.propTypes = {
 	artists: PropTypes.arrayOf(PropTypes.shape({
-		_id: PropTypes.string.isRequired,
-		SCUsername: PropTypes.string.isRequired
+		id: PropTypes.string.isRequired,
+		username: PropTypes.string.isRequired,
+		tracksLength: PropTypes.number.isRequired
 	}).isRequired).isRequired
 }
 
