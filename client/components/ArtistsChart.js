@@ -31,7 +31,7 @@ class ArtistsChart extends Component  {
 					header={<Cell>Number of Tracks</Cell>}
 					cell={props => (
 						<Cell {...props}>
-							{ this.props.artists[props.rowIndex].tracksLength }
+							{this.props.artists[props.rowIndex].tracksLength }
 						</Cell>
 					)}
 					width={10}

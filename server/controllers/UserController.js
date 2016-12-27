@@ -59,7 +59,8 @@ module.exports = {
 						title: track.title,
 						id: id,
 						url: '/api/track-stream/' + id,
-						artistName: user.username
+						artistName: user.username,
+						dateAdded: track.dateAdded.toDateString()
 					}
 				});
 

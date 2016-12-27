@@ -1,0 +1,63 @@
+$title-color: rgb(0, 0, 0);
+$title-color-hover: rgb(50, 60, 200);
+$visibility-btn-color: rgb(82, 0, 204);
+$close-btn-color: rgb(255, 0, 0);
+
+.artist-tracks-chart-table {
+   font-family: 'Quicksand', sans-serif;
+   font-size: 18px;
+   width: 95%;   
+   border: 1px solid black;
+   margin-right: auto;
+   margin-left: auto;
+
+    th, td {
+    	text-align: center;
+    	border: 1px solid black;
+    	height: 40px;
+    }
+}
+
+.track-options-container {
+	display: flex;
+	text-align: center;
+
+	&>a {
+		margin-right: 4px;
+		margin-left: 4px;
+	}
+}
+
+.close-btn {
+	color: $close-btn-color;
+	font-size: 20px;
+	flex: 1;
+
+	&:hover {
+		color: $close-btn-color;
+	}	
+}
+
+.visibility-btn {
+	color: $visibility-btn-color;
+	font-size: 20px;
+	flex: 1;
+
+	&:hover {
+		color: $visibility-btn-color;
+	}	
+}
+
+.track-title {
+	color: $title-color;
+	font-size: 18px;
+	text-decoration: none;
+	flex: 10;
+
+	&:hover,
+	&:active,
+	&:focus {
+		color: $title-color-hover;
+		text-decoration: none;
+	}
+}

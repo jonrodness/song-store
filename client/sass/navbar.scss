@@ -1,6 +1,8 @@
 $navbar-color: rgb(50, 50, 50);
 $hover-color: rgb(60,60,60);
 $font-color: rgb(255, 255, 255);
+$theme-color-1: rgb(153, 255, 253);
+$theme-color-2: rgb(243, 247, 168);
 
 .navbar .navbar-nav>li>a {
 	color: $font-color;
@@ -21,7 +23,7 @@ $font-color: rgb(255, 255, 255);
 }
 
 a.navbar-brand {
-   background: -webkit-linear-gradient(left, rgb(153, 255, 253), rgb(243, 247, 168));
+   background: -webkit-linear-gradient(left, $theme-color-1, $theme-color-2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
