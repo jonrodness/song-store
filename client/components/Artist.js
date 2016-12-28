@@ -5,7 +5,7 @@ import '../sass/artist.scss';
 const Artist = ({ id, name }) => {
 	return(
 		<div>
-			<h1 className="artist-name">{name}</h1>
+			<h1 className='artist-name page-title'>{name}</h1>
 			<ArtistTracksChartContainer id={id} />
 		</div>
 	)

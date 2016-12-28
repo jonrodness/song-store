@@ -1,4 +1,4 @@
-$navbar-color: rgb(50, 50, 50);
+$navbar-color: rgb(20, 20, 20);
 $hover-color: rgb(60,60,60);
 $font-color: rgb(255, 255, 255);
 $theme-color-1: rgb(153, 255, 253);
@@ -6,6 +6,10 @@ $theme-color-2: rgb(243, 247, 168);
 
 .navbar .navbar-nav>li>a {
 	color: $font-color;
+}
+
+.navbar {
+	z-index: 999;
 }
 
 .dropdown-menu>li>a, .dropdown-menu>li>a:hover, li>a {

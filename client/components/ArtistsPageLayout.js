@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react'
 import ArtistsChart from './ArtistsChart'
+import '../sass/artistsPage.scss'
 
 const ArtistsLayout = ({ artists }) => {
 	return (
-		<div>
-			<h1>Artists</h1>
+		<div className='artists-page'>
+			<h1 className='page-title'>Artists</h1>
 			<ArtistsChart artists={artists} />
 		</div>
 	)

@@ -1,5 +1,35 @@
 .react-dimensions-chart-wrapper {
 	position: absolute;
-	max-height: 60% !important;
+	/*max-height: 70% ;*/
+	.public_fixedDataTable_main {
+		border-bottom: none;		
+	}
+}
+
+.fixedDataTableRowLayout_main {
+	border-bottom: none;
+}
+
+body {
+	overflow: hidden;
+}
+
+.content {
+	position: absolute;
+	top: 50px;
 	bottom: 50px;
+	width: 100%;
+
+	&>div {
+		height: 100%;
+
+		&>h1 {
+			height: 10%;
+			margin: 0 !important;
+		}
+
+		&>div {
+			height: 90% !important;
+		}
+	}
 }

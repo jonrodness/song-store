@@ -16,7 +16,8 @@ class ArtistsChart extends Component  {
 				rowHeight={50}
 				width={this.props.containerWidth}
 				height={this.props.containerHeight}
-				headerHeight={50}>
+				headerHeight={50}
+				className='page-body'>
 				<Column
 					header={<Cell>Artist</Cell>}
 					cell={props => (
