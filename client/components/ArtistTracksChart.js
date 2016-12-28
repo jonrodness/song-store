@@ -76,17 +76,19 @@ class ArtistList extends React.Component {
 		})
 
 		return(
-			<table className='artist-tracks-chart-table'>
-				<thead>
-					<tr>
-						<th>Title</th>
-						<th>Date Added</th>
-					</tr>
-				</thead>
-				<tbody>
-					{rowNodes}
-				</tbody>
-			</table>
+			<div className='table-container'>
+				<table className='artist-tracks-chart-table'>
+					<thead>
+						<tr>
+							<th>Title</th>
+							<th>Date Added</th>
+						</tr>
+					</thead>
+					<tbody>
+						{rowNodes}
+					</tbody>
+				</table>
+			</div>
 		)
 	}
 }
