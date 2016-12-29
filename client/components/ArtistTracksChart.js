@@ -7,6 +7,7 @@ import MdClose from 'react-icons/lib/md/close'
 import FaEyeSlash from 'react-icons/lib/fa/eye-slash'
 import FaEye from 'react-icons/lib/fa/eye'
 import MdFileUpload from 'react-icons/lib/md/file-upload'
+import Dropzone from 'react-dropzone'
 import '../sass/artistTracksChart.scss'
 
 class UploadFileForm extends Component {
@@ -14,20 +15,29 @@ class UploadFileForm extends Component {
 		super(props)
 	}
 
+	onDrop(acceptedFiles, rejectedFiles) {
+      console.log('Accepted files: ', acceptedFiles)
+      console.log('Rejected files: ', rejectedFiles)
+	}
+
 	render() {
 		return(
-			<form 
-				className='upload-form' 
-				action='/api/track' 
-				method='post' 
-				encType='multipart/form-data' >
-				<label>
-					Upload a track:
-					<input type='file' name='track' id='file-upload-btn' defaultValue={this.props.uploadFile} onChange={this.props.handleFileChange}/>
-				</label>
-				<MdFileUpload />
-				<input type='submit'/>
-			</form>
+			// <form 
+			// 	className='upload-form' 
+			// 	action='/api/track' 
+			// 	method='post' 
+			// 	encType='multipart/form-data'
+			// 	onsubmit="return false" >
+			// 	<label>
+			// 		Upload a track:
+			// 		<input type='file' name='track' id='file-upload-btn' defaultValue={this.props.uploadFile} onChange={this.props.handleFileChange}/>
+			// 	</label>
+			// 	<MdFileUpload />
+			// 	<input type='submit'/>
+			// </form>
+<Dropzone onDrop={this.onDrop}>
+              <div>Try dropping some files here, or click to select files to upload.</div>
+            </Dropzone>
 		)
 	}
 }

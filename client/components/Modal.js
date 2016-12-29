@@ -19,14 +19,12 @@ class AppModal extends React.Component {
           container={this}
           aria-labelledby="contained-modal-title"
         >
-          <Modal.Header closeButton>
+          <Modal.Header>
             <Modal.Title id="contained-modal-title">{this.props.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             {this.props.children}
           </Modal.Body>
-          <Modal.Footer>
-          </Modal.Footer>
         </Modal>
       </div>
     );

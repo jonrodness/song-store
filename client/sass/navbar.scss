@@ -59,3 +59,42 @@ a.navbar-brand {
 .navbar .navbar-plays.new-plays a.navbar-plays-text {
 	color: black;
 }
+
+/* Signup/login modal */
+
+.modal-dialog {
+	font-family: "Quicksand", "sans-serif";
+	text-align: center;
+	margin: 150px;
+	border-radius: 0;
+	.modal-header,
+	.modal-footer {
+		border: none;
+	}
+
+	h4 {
+		font-size: 26px;
+	}
+
+	input {
+		margin: 10px;
+	}
+
+	.modal-submit {
+		margin-top: 15px;
+		width: 176px;
+		height: 30px;
+		border-radius: 7px;
+		background-color: rgb(250, 250, 250);
+		box-shadow: none;
+		border: 1px grey solid;
+		color: rgb(89, 89, 89);
+		font-weight: bold;
+		letter-spacing: 1.1px;
+
+		&:hover {
+			background-color: rgb(89, 89, 89);
+			color: rgb(250, 250, 250);
+		}
+	}
+}

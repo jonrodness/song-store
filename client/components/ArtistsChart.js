@@ -19,7 +19,7 @@ class ArtistsChart extends Component  {
 				headerHeight={50}
 				className='page-body'>
 				<Column
-					header={<Cell>Artist</Cell>}
+					header={<Cell>Name</Cell>}
 					cell={props => (
 						<Cell {...props}>
 							<Link to={'/artists/' + this.props.artists[props.rowIndex].id}>{this.props.artists[props.rowIndex].username}</Link>

@@ -20,7 +20,7 @@ passport.use('local-login', new LocalStrategy(
 	      	if (!user) { 
 	      		return done(null, false); 
 	      	}
-	      	user.verifyPassword(password, function(err, user) {
+	      	user.verifyPassword(password, function(err, isMatch) {
 	      		if (err) {
 	      			return done(null, false);       		
 	      		} else {

@@ -77,28 +77,23 @@ class AppNavbar extends React.Component {
 			    </Navbar.Collapse>
 			  </Navbar>
 
-			  <Modal className="login-modal" show={this.state.showLoginModal} close={this.closeLoginModal} title={loginTitle}>
+			  <Modal className="login-modal" show={this.state.showLoginModal} close={this.closeLoginModal} title="Login">
 	            <form action="/auth/local-login" method="post">
-	              E-mail address:<br/>
-	              <input type="text" name="username" />
+	              <input type="text" name="username" placeholder="Username" />
 	              <br/>
-	              Password:<br/>
-	              <input type="text" name="password" />
+	              <input type="text" name="password" placeholder="Password" />
+	              <br/>
+				  <input type="submit" value="Login" className="modal-submit" />
 	            </form>
               </Modal>
 
-			  <Modal className="signup-modal" show={this.state.showSignupModal} close={this.closeSignupModal} title={signupTitle}>
-		          <a href='/auth/soundcloud'><input type="image" src="http://connect.soundcloud.com/2/btn-connect-sc-s.png" /></a>
-		          <hr/>
-		          <h4>Sign up with your e-mail</h4>
+			  <Modal className="signup-modal" show={this.state.showSignupModal} close={this.closeSignupModal} title="Signup" >
 		          <form action="/auth/local-signup" method="post">
-		            User name:<br/>
-		            <input type="text" name="username" />
+		            <input type="text" name="username" placeholder="Username"/>
 		            <br/>
-		            Password:<br/>
-		            <input type="password" name="password" />
-		            <br />
-		            <input type="submit" value="Sign Up" />
+		            <input type="password" name="password" placeholder="Password"/>
+		            <br/>
+		            <input type="submit" value="Signup" className="modal-submit" />
 		          </form>
               </Modal>
 
