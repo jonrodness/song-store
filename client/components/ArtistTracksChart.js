@@ -13,31 +13,29 @@ import '../sass/artistTracksChart.scss'
 class UploadFileForm extends Component {
 	constructor(props) {
 		super(props)
+
+		this.openFilePrompt = this.openFilePrompt.bind(this)
+		this.setFile = this.setFile.bind(this)
 	}
 
-	onDrop(acceptedFiles, rejectedFiles) {
-      console.log('Accepted files: ', acceptedFiles)
-      console.log('Rejected files: ', rejectedFiles)
-	}
+	openFilePrompt() {
+      this.dropzone.open();
+    }	
+
+	setFile (acceptedFiles) {
+        this.props.handleFileChange(acceptedFiles[0])
+    }
 
 	render() {
 		return(
-			// <form 
-			// 	className='upload-form' 
-			// 	action='/api/track' 
-			// 	method='post' 
-			// 	encType='multipart/form-data'
-			// 	onsubmit="return false" >
-			// 	<label>
-			// 		Upload a track:
-			// 		<input type='file' name='track' id='file-upload-btn' defaultValue={this.props.uploadFile} onChange={this.props.handleFileChange}/>
-			// 	</label>
-			// 	<MdFileUpload />
-			// 	<input type='submit'/>
-			// </form>
-<Dropzone onDrop={this.onDrop}>
-              <div>Try dropping some files here, or click to select files to upload.</div>
-            </Dropzone>
+			<div>
+				<Dropzone className='dropzone' onDrop={this.setFile} ref={(node) => { this.dropzone = node }}>
+            	</Dropzone>
+            	<input type="button" onClick={this.openFilePrompt} value='Open Dropzone' />
+                {this.props.uploadFileName}
+                <input type='button' onClick={this.props.uploadFile} value='Upload' />
+                {this.props.status}
+        	</div>
 		)
 	}
 }
@@ -47,10 +45,14 @@ class ArtistTracksChart extends Component  {
 		super(props)
 
 		this.state = {
-			uploadFile: null
+			uploadFile: {
+				name: ''
+			},
+			status: ''
 		}
 
 		this.handleFileChange = this.handleFileChange.bind(this)
+		this.uploadFile = this.uploadFile.bind(this)	
 	}
 
 	render() {
@@ -58,6 +60,7 @@ class ArtistTracksChart extends Component  {
 			<div>
 				<UploadFileForm
 					handleFileChange={this.handleFileChange}
+					uploadFileName={this.state.uploadFile.name}
 					uploadFile={this.uploadFile} />
 
 				<Table
@@ -101,6 +104,24 @@ class ArtistTracksChart extends Component  {
 				</Table>
 			</div>	
 		)
+	}
+
+	uploadFile() {	
+		let file = this.state.uploadFile
+		let formData = new FormData()
+		formData.append('track', file)
+
+		fetch('/api/track/', {
+			method: 'POST',
+			body: formData,
+			credentials: 'include'
+		})
+		.then(response => response.json())
+		.then(json => {
+			this.setState({
+				status: json
+			})
+		})		
 	}
 
 	handleFileChange(file) {
