@@ -23,7 +23,7 @@ class UploadFileForm extends Component {
 			<div className='upload-form'>
 				<Dropzone className='dropzone' onDrop={this.setFile} ref={ (node) => { this.dropzone = node } }>
             	</Dropzone>
-            	<p>{this.props.fileName} {this.props.status}</p>
+            	<p>{this.props.status}</p>
             	<input type='button' onClick={this.openFilePrompt} value='Choose File' />
             	{this.props.validFileSelected ? <input type='button' onClick={this.props.onUploadFile} value='Upload' />
                 	: <input type='button' onClick={this.props.onUploadFile} className='disabled' value='Upload' disabled />            		

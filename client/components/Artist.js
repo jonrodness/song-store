@@ -2,8 +2,9 @@ import ArtistTracksChartContainer from '../containers/ArtistTracksChartContainer
 import UploadForm from './UploadForm'
 import React, { PropTypes } from 'react'
 
-const Artist = ({ id, name, uploadFile, onHandleFileChange, 
-	onUploadFile, uploadStatus, hasUploadRights, validFileSelected }) => {
+const Artist = ({ id, name, onHandleFileChange, onUploadFile, 
+	uploadStatus, hasUploadRights, validFileSelected }) => {
+	
 	let className = 'page artist-page'
 	if (hasUploadRights) {
 		className += ' upload-rights'
@@ -16,12 +17,13 @@ const Artist = ({ id, name, uploadFile, onHandleFileChange,
 				<UploadForm
 					onUploadFile={onUploadFile} 
 					onHandleFileChange={onHandleFileChange}
-					fileName={uploadFile.name}
 					status={uploadStatus} 
 					validFileSelected={validFileSelected}
 				/>
 				: null }
-			<ArtistTracksChartContainer id={id} hasUploadRights={hasUploadRights} />
+			<div className='chart-container'>
+				<ArtistTracksChartContainer id={id} hasUploadRights={hasUploadRights} />
+			</div>
 		</div>
 	)
 }

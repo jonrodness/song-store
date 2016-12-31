@@ -8,8 +8,9 @@ module.exports = {
 		var user = req.user;
 		var file = req.file;
 
-		// TODO: HANDLE no file
-
+		if (!file) {
+			return res.status(400).json('Unable to upload track');
+		}
 		// Save the track as a subdoc of User
 		var length = user.tracks.push({ 
 			title: file.originalname 
@@ -20,7 +21,7 @@ module.exports = {
 		user.save(function(err, user) {
 			if (err) {
 				console.log('Error: ' + err);
-				res.status(400).send();				
+				res.status(400).json('Unable to upload track');				
 			} else {
 				var params = {
 					Bucket: 'songstore',
@@ -31,9 +32,9 @@ module.exports = {
 				s3.putObject(params, function(err) {
 					if (err) {
 						console.log('Error: ' + err);						
-						res.status(400).send();
+						res.status(400).json('Unable to upload track');
 					} else {
-						res.status(201).send('Successfully uploaded track');
+						res.status(201).json('Successfully uploaded track ' + file.originalname);
 					}
 				});			
 			}
@@ -47,30 +48,6 @@ module.exports = {
 				Key: trackId
 		};
 
-		s3.getObject(params).createReadStream().pipe(res);	
-
-
-		// need end or headers to tell when done
-
-
-
-
-
-
-
-
-		// var downloadStream = client.downloadStream(s3Params);
-		
-		// downloadStream.on('error', function(err) {
-		// 	console.log('Download failed: ' + err.stack);
-		// });
-
-		// downloadStream.on('httpHeaders', function(status, headers, resp) {
-		// 	res.set({
-		// 		'Content-Type': headers['content-type']
-		// 	});
-		// });
-
-		// downloadStream.pipe(res);
+		s3.getObject(params).createReadStream().pipe(res);
 	}
 }

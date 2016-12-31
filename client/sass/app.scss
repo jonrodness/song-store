@@ -25,19 +25,7 @@ body {
 	height: 100%;
 
 	h1 {
-		height: 10%;
+		height: 85px;
 		margin: 0 !important;			
-	}
-}
-
-@media screen and (max-height: 600px) {
-	.page-title {
-		font-size: 18px;		
-	}
-}
-
-@media screen and (max-height: 500px) {
-	.page-title {
-		font-size: 12px;		
 	}
 }

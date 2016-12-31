@@ -9,10 +9,10 @@ class ArtistPage extends React.Component {
 		this.state = {
 			name: "",
 			uploadFile: {
-				name: 'No file selected for upload'
+				name: ''
 			},
 			validFileSelected: false,
-			uploadStatus: '',
+			uploadStatus: 'No file selected for upload',
 			hasUploadRights: auth.getToken() === this.props.params.id
 		}
 		this.onUploadFile = this.onUploadFile.bind(this)		
@@ -48,6 +48,10 @@ class ArtistPage extends React.Component {
 		.then(response => response.json())
 		.then(json => {
 			this.setState({
+				uploadFile: {
+					name: ''
+				},
+				validFileSelected: false,	
 				uploadStatus: json
 			})
 		})		
@@ -58,7 +62,7 @@ class ArtistPage extends React.Component {
 			this.setState({
 				uploadFile: file,
 				validFileSelected: true,
-				uploadStatus: ''
+				uploadStatus: file.name
 			})
 		} else {
 			this.setState({

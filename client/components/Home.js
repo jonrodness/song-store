@@ -17,19 +17,9 @@ class Home extends React.Component {
 	render() {
 		return(
 				<div className='home'>			
-				{
-					!HIDE ? 
-					(<div>	
-						<section className='image-panel1'>
-							<h1>Let your music do the talking.</h1>
-						</section>
-						<section className='inter-panel1'>
-							<h1></h1>
-						</section>
-					</div>
-					)
-					: (<div></div>)
-				}
+					<section className='image-panel1'>
+						<h1>Let your music do the talking.</h1>
+					</section>
 				</div>
 		)
 	}

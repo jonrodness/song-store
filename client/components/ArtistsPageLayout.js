@@ -5,7 +5,9 @@ const ArtistsLayout = ({ artists }) => {
 	return (
 		<div className='page'>
 			<h1 className='page-title'>Artists</h1>
-			<ArtistsChart artists={artists} />
+			<div className='chart-container'>
+				<ArtistsChart artists={artists} />
+			</div>
 		</div>
 	)
 }

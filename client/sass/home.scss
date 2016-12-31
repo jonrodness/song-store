@@ -23,23 +23,12 @@
     justify-content: center;	
 }
 
-/* Classes */
+.home {
+	height: 100%;
+}
 
 .image-panel1 {
 	@extend .image-panel;
 	background-image: url("/images/crowd-light2.jpg");
-}
-
-.image-panel2 {
-	@extend .image-panel;
-	background-image: url("/images/soccer.jpg");
-}
-
-.image-panel3 {
-	@extend .image-panel;
-	background-image: url("/images/sea1.jpg");
-}
-
-.inter-panel1, .inter-panel2 {
-	@extend .inter-panel;
+	height: 100%;
 }

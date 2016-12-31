@@ -3,8 +3,14 @@ $title-color-hover: rgb(50, 60, 200);
 
 .react-dimensions-chart-wrapper {
 	position: absolute;
-	height: 90% !important;
-	color: $title-color;	
+	color: $title-color;
+}
+
+.chart-container {
+	top: 85px;
+	bottom: 0;
+	width: 100%;
+	position: absolute;
 }
 
 .fixedDataTableLayout_main {
