@@ -1,35 +1,28 @@
+$title-color: rgb(50, 50, 50);
+$title-color-hover: rgb(50, 60, 200);
+
 .react-dimensions-chart-wrapper {
 	position: absolute;
-	/*max-height: 70% ;*/
-	.public_fixedDataTable_main {
-		border-bottom: none;		
-	}
+	height: 90% !important;
+	color: $title-color;	
 }
 
-.fixedDataTableRowLayout_main {
-	border-bottom: none;
-}
+.fixedDataTableLayout_main {
+	font-weight: 300;
+	font-size: 15px;
+	letter-spacing: 1.2px;
+	
+	.cell-link {
+		color: $title-color;
+		text-decoration: none;
+		flex: 10;
+		display: block;	
 
-body {
-	overflow: hidden;
-}
-
-.content {
-	position: absolute;
-	top: 50px;
-	bottom: 50px;
-	width: 100%;
-
-	&>div {
-		height: 100%;
-
-		&>h1 {
-			height: 10%;
-			margin: 0 !important;
+		&:hover,
+		&:active,
+		&:focus {
+			color: $title-color-hover;
+			text-decoration: none;
 		}
-
-		&>div {
-			height: 90% !important;
-		}
-	}
+	}	
 }

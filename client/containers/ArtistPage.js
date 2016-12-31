@@ -1,13 +1,22 @@
 import React from 'react';
 import $ from 'jquery';
 import Artist from '../components/Artist'
+import auth from '../auth';
 
 class ArtistPage extends React.Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			name: ""
+			name: "",
+			uploadFile: {
+				name: 'No file selected for upload'
+			},
+			validFileSelected: false,
+			uploadStatus: '',
+			hasUploadRights: auth.getToken() === this.props.params.id
 		}
+		this.onUploadFile = this.onUploadFile.bind(this)		
+		this.onHandleFileChange = this.onHandleFileChange.bind(this)
 	}
 
 	componentDidMount() {
@@ -26,9 +35,49 @@ class ArtistPage extends React.Component {
 		})
 	}
 
+	onUploadFile() {	
+		let file = this.state.uploadFile
+		let formData = new FormData()
+		formData.append('track', file)
+
+		fetch('/api/track/', {
+			method: 'POST',
+			body: formData,
+			credentials: 'include'
+		})
+		.then(response => response.json())
+		.then(json => {
+			this.setState({
+				uploadStatus: json
+			})
+		})		
+	}
+
+	onHandleFileChange(file) {
+		if (file.type === 'audio/mp3') {
+			this.setState({
+				uploadFile: file,
+				validFileSelected: true,
+				uploadStatus: ''
+			})
+		} else {
+			this.setState({
+				uploadFile: {
+					name: ''
+				},
+				validFileSelected: false,
+				uploadStatus: 'Please select a valid mp3 file'
+			})
+		}
+	}	
+
 	render() {
 		return(
-			<Artist id={this.props.params.id} {...this.state}></Artist>
+			<Artist 
+				id={this.props.params.id} 
+				onUploadFile={this.onUploadFile} 
+				onHandleFileChange={this.onHandleFileChange} 
+				{...this.state} />
 		)
 	}
 }

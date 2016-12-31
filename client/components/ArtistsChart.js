@@ -17,12 +17,12 @@ class ArtistsChart extends Component  {
 				width={this.props.containerWidth}
 				height={this.props.containerHeight}
 				headerHeight={50}
-				className='page-body'>
+				className='page-body' >
 				<Column
 					header={<Cell>Name</Cell>}
 					cell={props => (
 						<Cell {...props}>
-							<Link to={'/artists/' + this.props.artists[props.rowIndex].id}>{this.props.artists[props.rowIndex].username}</Link>
+							<Link className='cell-link' to={'/artists/' + this.props.artists[props.rowIndex].id}>{this.props.artists[props.rowIndex].username}</Link>
 						</Cell>
 					)}
 					width={400}

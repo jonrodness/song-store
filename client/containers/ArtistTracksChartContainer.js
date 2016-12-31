@@ -31,8 +31,10 @@ class ArtistTracksChartContainer extends Component {
 
 	render() {
 		return(
-			<ArtistTracksChart {...this.state}
-			onSelectTrack={this.onSelectTrack} />
+			<ArtistTracksChart 
+				{...this.state}
+				onSelectTrack={this.onSelectTrack}
+				hasUploadRights={this.props.hasUploadRights} />
 		)
 	}
 }

@@ -1,46 +1,40 @@
-$title-color: rgb(0, 0, 0);
-$title-color-hover: rgb(50, 60, 200);
 $visibility-btn-color: rgb(0, 0, 230);
 $close-btn-color: rgb(255, 0, 0);
 
-.fixedDataTableLayout_main {
-	text-align: center;
-	font-weight: 300;
-	font-size: 15px;
-	letter-spacing: 1.2px;	
+.upload-rights .react-dimensions-chart-wrapper {
+	height: 75% !important;	
+}
+
+.artist-tracks-chart {
+	.title-header {
+		margin-left: 100px;
+	}
 }
 
 .track-options-container {
 	display: flex;
-	padding-left: 10px;
-	padding-right: 10px;
 	text-align: left;
 
-	&>a {
-		margin-right: 4px;
-		margin-left: 4px;
-		line-height: 18px;
+	.cell-link {
+		margin-left: 0;
+		line-height: 32px;
 	}
+}
 
-	.track-title {
-		color: $title-color;
-		text-decoration: none;
-		margin-left: 20px;
-		flex: 10;
+.track-options {
+	margin-left: 10px;
+	margin-right: 10px;
+	min-width: 80px;
 
-		&:hover,
-		&:active,
-		&:focus {
-			color: $title-color-hover;
-			text-decoration: none;
-		}
+	&>a {
+		font-size: 20px;
+		margin-left: 7px;
+		margin-right: 7px;
 	}
 }
 
 .close-btn {
 	color: $close-btn-color;
-	font-size: 20px;
-	flex: 1;
 
 	&:hover {
 		color: $close-btn-color;
@@ -49,8 +43,6 @@ $close-btn-color: rgb(255, 0, 0);
 
 .visibility-btn {
 	color: $visibility-btn-color;
-	font-size: 20px;
-	flex: 1;
 
 	&:hover {
 		color: $visibility-btn-color;

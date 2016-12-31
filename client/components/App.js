@@ -12,7 +12,7 @@ import Home from './Home'
 import OAuth from './OAuth'
 import auth from '../auth'
 
-import '../sass/shared.scss'
+import '../sass/app.scss'
 
 import app from '../reducers'
 
