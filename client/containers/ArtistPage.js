@@ -67,27 +67,28 @@ class ArtistPage extends React.Component {
 	}
 
 	deleteTrack(id) {
-		const url = '/api/tracks/' + id
+		var confirm = window.confirm("Are you sure you want to delete this track?")
+		if (confirm) {
+			const url = '/api/tracks/' + id
+			fetch(url, {
+				method: 'DELETE',
+				credentials: 'include'
+			})
+			.then(response => {
+				this.updateChart()			
+			})			
+		}
+	}
+
+	toggleVisibility(id) {
+		const url = '/api/tracks/update-visibility/' + id
 		fetch(url, {
-			method: 'DELETE',
+			method: 'GET',
 			credentials: 'include'
 		})
 		.then(response => {
 			this.updateChart()			
 		})
-	}
-
-	toggleVisibility(id) {
-		const url = '/api/artists/' + this.props.id + '/tracks'
-		fetch(url, {
-			credentials: 'include'
-		})
-		.then(response => response.json())
-		.then(json => {
-			this.setState({
-				tracks: json
-			})
-		})	
 	}
 
 	updateChart() {
@@ -120,6 +121,7 @@ class ArtistPage extends React.Component {
 				onHandleFileChange={this.onHandleFileChange}
 				ref={(artist) => { this.artistComponent = artist }}
 				deleteTrack={this.deleteTrack}
+				toggleVisibility={this.toggleVisibility}
 				{...this.state} />
 		)
 	}

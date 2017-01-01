@@ -31,16 +31,30 @@ class ArtistTracksChart extends Component  {
 									<div className='track-options'>
 										<a 
 											href='#'
+											title='Delete track'
 											className='close-btn'
 											onClick={() => {this.props.deleteTrack(this.props.tracks[props.rowIndex].id)}} >
+
 											<MdClose />
 										</a>
-										<a 
-											href='#'
-											className='visibility-btn'
-											onClick={() => {this.props.toggleVisibility(this.props.tracks[props.rowIndex])}} >
-											<FaEye />
-										</a>
+										
+										{ this.props.tracks[props.rowIndex].visible ?
+											<a 
+												href='#'
+												title='Track is currently visible to others'
+												className='visibility-btn'
+												onClick={() => { this.props.toggleVisibility(this.props.tracks[props.rowIndex].id) }} >
+												<FaEye />
+											</a>
+											: 
+											<a 
+												href='#'
+												title='Track is currently not visible to others'
+												className='visibility-btn'
+												onClick={() => { this.props.toggleVisibility(this.props.tracks[props.rowIndex].id) }} >
+												<FaEyeSlash />
+											</a>
+										}											
 									</div>									
 									) : null}
 								<a 

@@ -36,7 +36,8 @@ $close-btn-color: rgb(255, 0, 0);
 .close-btn {
 	color: $close-btn-color;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		color: $close-btn-color;
 	}	
 }
@@ -44,7 +45,8 @@ $close-btn-color: rgb(255, 0, 0);
 .visibility-btn {
 	color: $visibility-btn-color;
 
-	&:hover {
+	&:hover,
+	&:focus {
 		color: $visibility-btn-color;
 	}	
 }

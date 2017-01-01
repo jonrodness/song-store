@@ -17,6 +17,6 @@ router.get('/artists', userController.getArtistList);
 router.get('/track-stream/:trackId', trackController.get);
 router.post('/track', upload.single('track'), trackController.upload);
 router.delete('/tracks/:trackId', trackController.delete);
-
+router.get('/tracks/update-visibility/:trackId', trackController.updateVisibility);
 
 module.exports = router;

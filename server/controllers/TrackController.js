@@ -41,6 +41,23 @@ module.exports = {
 		});
 	},
 
+	updateVisibility: function(req, res) {
+		var user = req.user;		
+		var track = user.tracks.id(req.params.trackId);
+		if (track) {
+			track.visible = !track.visible;
+		}
+
+		user.save(function(err, user) {
+			if (err) {
+				console.log('Error: ' + err);
+				res.status(400).json('Unable to update track');				
+			} else {
+				res.status(200).send();
+			}
+		})
+	},
+
 	get: function(req, res) {
 		var trackId = req.params.trackId;
 		var params = {
@@ -57,6 +74,7 @@ module.exports = {
 		if (track) {
 			track.remove();
 		}
+
 		user.save(function(err, user) {
 			if (err) {
 				console.log('Error: ' + err);

@@ -2,7 +2,6 @@ import ArtistTracksChartContainer from '../containers/ArtistTracksChartContainer
 import UploadForm from './UploadForm'
 import React, { Component, PropTypes } from 'react'
 
-
 class Artist extends Component {
 	constructor(props) {
 		super(props)

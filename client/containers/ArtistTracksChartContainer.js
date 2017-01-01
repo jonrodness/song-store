@@ -40,7 +40,8 @@ class ArtistTracksChartContainer extends Component {
 				{...this.state}
 				onSelectTrack={this.onSelectTrack}
 				hasUploadRights={this.props.hasUploadRights}
-				deleteTrack={this.props.deleteTrack} />
+				deleteTrack={this.props.deleteTrack}
+				toggleVisibility={this.props.toggleVisibility} />
 		)
 	}
 }
