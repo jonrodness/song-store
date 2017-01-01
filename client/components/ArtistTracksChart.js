@@ -32,7 +32,7 @@ class ArtistTracksChart extends Component  {
 										<a 
 											href='#'
 											className='close-btn'
-											onClick={() => {this.props.deleteTrack(this.props.tracks[props.rowIndex])}} >
+											onClick={() => {this.props.deleteTrack(this.props.tracks[props.rowIndex].id)}} >
 											<MdClose />
 										</a>
 										<a 

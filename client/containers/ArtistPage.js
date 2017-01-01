@@ -44,6 +44,10 @@ class ArtistPage extends React.Component {
 		let formData = new FormData()
 		formData.append('track', file)
 
+		this.setState({
+			validFileSelected: false,	
+		})		
+
 		fetch('/api/track/', {
 			method: 'POST',
 			body: formData,
@@ -63,16 +67,14 @@ class ArtistPage extends React.Component {
 	}
 
 	deleteTrack(id) {
-		const url = '/api/artists/' + this.props.id + '/tracks'
+		const url = '/api/tracks/' + id
 		fetch(url, {
+			method: 'DELETE',
 			credentials: 'include'
 		})
-		.then(response => response.json())
-		.then(json => {
-			this.setState({
-				tracks: json
-			})
-		})	
+		.then(response => {
+			this.updateChart()			
+		})
 	}
 
 	toggleVisibility(id) {
@@ -117,6 +119,7 @@ class ArtistPage extends React.Component {
 				onUploadFile={this.onUploadFile} 
 				onHandleFileChange={this.onHandleFileChange}
 				ref={(artist) => { this.artistComponent = artist }}
+				deleteTrack={this.deleteTrack}
 				{...this.state} />
 		)
 	}

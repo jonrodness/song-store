@@ -49,5 +49,21 @@ module.exports = {
 		};
 
 		s3.getObject(params).createReadStream().pipe(res);
+	},
+
+	delete: function(req, res) {
+		var user = req.user;
+		var track = user.tracks.id(req.params.trackId);
+		if (track) {
+			track.remove();
+		}
+		user.save(function(err, user) {
+			if (err) {
+				console.log('Error: ' + err);
+				res.status(400).json('Unable to delete track');				
+			} else {
+				res.status(200).send();
+			}
+		})
 	}
 }
