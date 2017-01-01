@@ -1,36 +1,46 @@
 import ArtistTracksChartContainer from '../containers/ArtistTracksChartContainer'
 import UploadForm from './UploadForm'
-import React, { PropTypes } from 'react'
+import React, { Component, PropTypes } from 'react'
 
-const Artist = ({ id, name, onHandleFileChange, onUploadFile, 
-	uploadStatus, hasUploadRights, validFileSelected }) => {
-	
-	let className = 'page artist-page'
-	if (hasUploadRights) {
-		className += ' upload-rights'
+
+class Artist extends Component {
+	constructor(props) {
+		super(props)
+
+		this.updateChart = this.updateChart.bind(this)
 	}
 
-	return (
-		<div className={className}>
-			<h1 className='artist-name page-title'>{name}</h1>
-			{ hasUploadRights ? 
-				<UploadForm
-					onUploadFile={onUploadFile} 
-					onHandleFileChange={onHandleFileChange}
-					status={uploadStatus} 
-					validFileSelected={validFileSelected}
-				/>
-				: null }
-			<div className='chart-container'>
-				<ArtistTracksChartContainer id={id} hasUploadRights={hasUploadRights} />
-			</div>
-		</div>
-	)
-}
+	updateChart() {
+		this.trackChart.getWrappedInstance().getTracks()
+	}
+	
+	render() {
+		let className = 'page artist-page'
+		if (this.props.hasUploadRights) {
+			className += ' upload-rights'
+		}
 
-Artist.propTypes = {
-	name: PropTypes.string,
-	link: PropTypes.string
+		return (
+			<div className={className}>
+				<h1 className='artist-name page-title'>{this.props.name}</h1>
+				{ this.props.hasUploadRights ? 
+					<UploadForm
+						onUploadFile={this.props.onUploadFile} 
+						onHandleFileChange={this.props.onHandleFileChange}
+						status={this.props.uploadStatus} 
+						validFileSelected={this.props.validFileSelected} />
+					: null }
+				<div className='chart-container'>
+					<ArtistTracksChartContainer 
+						id={this.props.id} 
+						deleteTrack={this.props.deleteTrack}
+						toggleVisibility={this.props.toggleVisibility}
+						hasUploadRights={this.props.hasUploadRights}
+						ref={(chart) => { this.trackChart = chart }} />
+				</div>
+			</div>
+		)		
+	}
 }
 
 export default Artist

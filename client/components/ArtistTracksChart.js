@@ -29,10 +29,16 @@ class ArtistTracksChart extends Component  {
 							<div className='track-options-container'>
 								{this.props.hasUploadRights ? (
 									<div className='track-options'>
-										<a href='#' className='close-btn'>
+										<a 
+											href='#'
+											className='close-btn'
+											onClick={() => {this.props.deleteTrack(this.props.tracks[props.rowIndex])}} >
 											<MdClose />
 										</a>
-										<a href='#' className='visibility-btn'>
+										<a 
+											href='#'
+											className='visibility-btn'
+											onClick={() => {this.props.toggleVisibility(this.props.tracks[props.rowIndex])}} >
 											<FaEye />
 										</a>
 									</div>									

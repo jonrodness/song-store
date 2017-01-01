@@ -10,9 +10,14 @@ class ArtistTracksChartContainer extends Component {
 			tracks: []
 		}
 		this.onSelectTrack = this.onSelectTrack.bind(this)
+		this.getTracks = this.getTracks.bind(this)
 	}
 
 	componentDidMount() {
+		this.getTracks()
+	}
+
+	getTracks() {
 		const url = '/api/artists/' + this.props.id + '/tracks'
 		fetch(url, {
 			credentials: 'include'
@@ -22,7 +27,7 @@ class ArtistTracksChartContainer extends Component {
 			this.setState({
 				tracks: json
 			})
-		})
+		})		
 	}
     
     onSelectTrack(track) {
@@ -43,4 +48,4 @@ ArtistTracksChartContainer.propTypes = {
 	id: PropTypes.string.isRequired
 }
 
-export default connect()(ArtistTracksChartContainer)
+export default connect(null, null, null, {withRef: true})(ArtistTracksChartContainer)

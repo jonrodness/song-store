@@ -15,8 +15,12 @@ class ArtistPage extends React.Component {
 			uploadStatus: 'No file selected for upload',
 			hasUploadRights: auth.getToken() === this.props.params.id
 		}
+
 		this.onUploadFile = this.onUploadFile.bind(this)		
 		this.onHandleFileChange = this.onHandleFileChange.bind(this)
+		this.updateChart = this.updateChart.bind(this)
+		this.deleteTrack = this.deleteTrack.bind(this)
+		this.toggleVisibility = this.toggleVisibility.bind(this)
 	}
 
 	componentDidMount() {
@@ -54,7 +58,38 @@ class ArtistPage extends React.Component {
 				validFileSelected: false,	
 				uploadStatus: json
 			})
+			this.updateChart()
 		})		
+	}
+
+	deleteTrack(id) {
+		const url = '/api/artists/' + this.props.id + '/tracks'
+		fetch(url, {
+			credentials: 'include'
+		})
+		.then(response => response.json())
+		.then(json => {
+			this.setState({
+				tracks: json
+			})
+		})	
+	}
+
+	toggleVisibility(id) {
+		const url = '/api/artists/' + this.props.id + '/tracks'
+		fetch(url, {
+			credentials: 'include'
+		})
+		.then(response => response.json())
+		.then(json => {
+			this.setState({
+				tracks: json
+			})
+		})	
+	}
+
+	updateChart() {
+		this.artistComponent.updateChart()
 	}
 
 	onHandleFileChange(file) {
@@ -80,7 +115,8 @@ class ArtistPage extends React.Component {
 			<Artist 
 				id={this.props.params.id} 
 				onUploadFile={this.onUploadFile} 
-				onHandleFileChange={this.onHandleFileChange} 
+				onHandleFileChange={this.onHandleFileChange}
+				ref={(artist) => { this.artistComponent = artist }}
 				{...this.state} />
 		)
 	}
