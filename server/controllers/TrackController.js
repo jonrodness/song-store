@@ -61,11 +61,28 @@ module.exports = {
 	get: function(req, res) {
 		var trackId = req.params.trackId;
 		var params = {
-				Bucket: 'songstore',
-				Key: trackId
+			Bucket: 'songstore',
+			Key: trackId
 		};
 
-		s3.getObject(params).createReadStream().pipe(res);
+		var readStream = s3.getObject(params);
+
+		readStream.on('httpHeaders', function(statusCode, headers, response) {
+			
+			if (statusCode === 200) {
+				res.set({
+					'content-type': headers['content-type'],
+					'content-length': headers['content-length'],
+					'accept-ranges':  headers['accept-ranges']
+				});
+
+				response.httpResponse.createUnbufferedStream().pipe(res);
+			} else {
+				res.send('Error');
+			}
+		});
+
+		readStream.send();	
 	},
 
 	delete: function(req, res) {
