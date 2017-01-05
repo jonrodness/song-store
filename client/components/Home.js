@@ -18,7 +18,7 @@ class Home extends React.Component {
 		return(
 				<div className='home'>			
 					<section className='image-panel1'>
-						<h1>Let your music do the talking.</h1>
+						<h1>Store and share your tunes</h1>
 					</section>
 				</div>
 		)

@@ -26,6 +26,10 @@ $theme-color-2: rgb(243, 247, 168);
     font-family: 'Quicksand', sans-serif;
 }
 
+.navbar-default .navbar-brand {
+	color: $theme-color-1;
+}
+
 a.navbar-brand {
    background: -webkit-linear-gradient(left, $theme-color-1, $theme-color-2);
   -webkit-background-clip: text;

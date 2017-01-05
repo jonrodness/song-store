@@ -1,6 +1,6 @@
 import React from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
-import PlayerControls from './PlayerControls';
+import TrackInfo from './TrackInfo';
 import '../sass/player.scss';
 import $ from 'jquery';
 import _ from 'lodash';
@@ -12,7 +12,11 @@ class AudioControls extends React.Component {
 	}
 
 	render() {
-		return <audio controls id="audio-player" onPlay={this.props.onPlay} src={this.props.src}></audio>
+		return (
+			<div className='audio-wrapper'>
+				<audio controls id="audio-player" onPlay={this.props.onPlay} src={this.props.src}></audio>
+			</div>
+		)
 	}
 }
 
@@ -22,12 +26,18 @@ class Player extends React.Component {
 	}
 	
 	render() {
-		let source = "/api/song"
+		let source = '/api/song'
 
 		return (
-			<div className="player">
-				<AudioControls id="audio-player" onPlay={this.confirmConsumption} src={this.props.streamUrl}></AudioControls>
-				<PlayerControls />
+			<div className='player-wrapper'>
+				<div className='player'>
+					<AudioControls 
+						onPlay={this.confirmConsumption} 
+						src={this.props.streamUrl} />			
+					<TrackInfo 
+						trackTitle={this.props.trackTitle}
+						artistName={this.props.artistName} />			
+				</div>
 			</div>
 		)
 	}
