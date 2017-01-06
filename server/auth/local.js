@@ -33,8 +33,10 @@ passport.use('local-login', new LocalStrategy(
 
 passport.use('local-signup', new LocalStrategy(
 	function(username, password, done) {
-		// process.nextTick(function() {
-		
+			if (username.length > 20) {
+				return done(null, false)				
+			}
+
 			var searchQuery = {
 				username: username
 			}		

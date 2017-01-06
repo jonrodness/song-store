@@ -52,11 +52,4 @@ const mapStateToProps = function(state, ownProps) {
 	}
 }
 
-Player.defaultProps = {
-	currentTrackId: "",
-	streamUrl: "",
-	trackTitle: "",
-	artistName: ""
-}
-
 export default connect(mapStateToProps)(Player);

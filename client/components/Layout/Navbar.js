@@ -89,9 +89,9 @@ class AppNavbar extends React.Component {
 
 			  <Modal className="signup-modal" show={this.state.showSignupModal} close={this.closeSignupModal} title="Signup" >
 		          <form action="/auth/local-signup" method="post">
-		            <input type="text" name="username" placeholder="Username"/>
+		            <input type="text" name="username" placeholder="Username" maxLength="20" />
 		            <br/>
-		            <input type="password" name="password" placeholder="Password"/>
+		            <input type="password" name="password" placeholder="Password" />
 		            <br/>
 		            <input type="submit" value="Signup" className="modal-submit" />
 		          </form>

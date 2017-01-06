@@ -2,8 +2,6 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 import '../../sass/footer.scss';
 
-
-
 class Footer extends React.Component {
 	render() {
 		return(

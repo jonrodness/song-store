@@ -10,6 +10,8 @@ module.exports = {
 
 		if (!file) {
 			return res.status(400).json('Unable to upload track');
+		} else if (file.originalname && file.originalname.length > 20) {
+			return res.status(400).json('Filename too long. Max length is 20 characters.');
 		}
 		// Save the track as a subdoc of User
 		var length = user.tracks.push({ 

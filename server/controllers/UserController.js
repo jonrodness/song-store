@@ -53,8 +53,13 @@ module.exports = {
 				res.status(400);
 				res.send();	
 			} else {
-				var tracks = user.tracks.map(function(track) {
+				var tracks = user.tracks.filter(function(track) {
+					return track.visible || userId === req.user._id.toString();
+				});
+
+				tracks = tracks.map(function(track) {
 					var id = track._id.toString();
+					
 					return {
 						title: track.title,
 						id: id,

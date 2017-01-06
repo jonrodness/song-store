@@ -4,7 +4,8 @@ import { SET_PLAY_TRACK } from '../actions'
 const playingTrack = (state = {
 	url: null,
 	title: null,
-	artistName: null
+	artistName: 'Select a track',
+	id: null
 }, action) => {
 	switch (action.type) {
 		case SET_PLAY_TRACK:

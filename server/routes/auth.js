@@ -7,16 +7,16 @@ var authController = require('../controllers/AuthController');
  * Authenticate using local oauth
  */
 router.post('/local-login',
-	passportLocal.authenticate('local-login', { failureRedirect: '/login' }),
-	authController.loginSuccess
+	passportLocal.authenticate('local-login', { failureRedirect: '/authfail' }),
+	authController.authSuccess
 );
 
 /*
  * Signup using local oauth
  */
 router.post('/local-signup',
- 	passportLocal.authenticate('local-signup', { failureRedirect: '/login' }),
-	authController.loginSuccess
+ 	passportLocal.authenticate('local-signup', { failureRedirect: '/authfail' }),
+	authController.authSuccess
 );
 
 module.exports = router;
