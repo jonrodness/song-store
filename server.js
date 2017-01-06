@@ -22,6 +22,8 @@ var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser')
 var cookieSession = require('cookie-session');
 
+var local = require('./local');
+
 if (!isProduction) {
 	// do not use hot middleware during production
 	var compiler = webpack(webpackConfig);
@@ -45,8 +47,9 @@ if (!isProduction) {
 	}));
 }
 
-// TODO: update for production
-mongoose.connect('mongodb://localhost/song-store');
+
+var mongoUrl = 'mongodb://' + local.mongoLab.userName + ':' + local.mongoLab.password + '@ds157278.mlab.com:57278/songstash';
+mongoose.connect(mongoUrl);
 
 app.use(express.static(publicPath));
 

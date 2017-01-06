@@ -46,8 +46,13 @@ a.navbar-brand {
 	background-color: $hover-color;
 	color: $font-color;
 }
-.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+.navbar-default .navbar-nav>li>a:focus, 
+.navbar-default .navbar-nav>li>a:hover,
+.navbar-default a,
+.navbar-default a,
+.navbar-default a, {
 	color: $font-color;
+	text-decoration: none;
 }
 
 .dropdown-menu {

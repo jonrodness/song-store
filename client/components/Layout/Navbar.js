@@ -55,11 +55,11 @@ class AppNavbar extends React.Component {
 			    </Navbar.Header>
 			    <Navbar.Collapse>
 			      <Nav>
-			        <NavItem eventKey={2} href="/artists">Artists</NavItem>
+			        <NavItem eventKey={2}><IndexLink to='/artists'>Artists</IndexLink></NavItem>
 			        {
 			        	this.props.isUserLoggedIn ? 
 			        	(
-			        	<NavItem eventKey={3} href={myProfileURL}>My Tracks</NavItem>			        	
+			        	<NavItem eventKey={3}><IndexLink to={myProfileURL}>My Tracks</IndexLink></NavItem>			        	
 			        	) 
 			        	: null
 			    	}
@@ -81,7 +81,7 @@ class AppNavbar extends React.Component {
 	            <form action="/auth/local-login" method="post">
 	              <input type="text" name="username" placeholder="Username" />
 	              <br/>
-	              <input type="text" name="password" placeholder="Password" />
+	              <input type="password" name="password" placeholder="Password" />
 	              <br/>
 				  <input type="submit" value="Login" className="modal-submit" />
 	            </form>

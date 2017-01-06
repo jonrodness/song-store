@@ -3,6 +3,8 @@ var User = require('../models/User');
 
 var s3 = require('../config/awsS3');
 
+var MAX_FILE_NAME = 30;
+
 module.exports = {
 	upload: function(req, res) {
 		var user = req.user;
@@ -10,7 +12,7 @@ module.exports = {
 
 		if (!file) {
 			return res.status(400).json('Unable to upload track');
-		} else if (file.originalname && file.originalname.length > 20) {
+		} else if (file.originalname && file.originalname.length > MAX_FILE_NAME) {
 			return res.status(400).json('Filename too long. Max length is 20 characters.');
 		}
 		// Save the track as a subdoc of User
