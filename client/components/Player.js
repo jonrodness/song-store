@@ -33,10 +33,15 @@ class Player extends React.Component {
 				<div className='player'>
 					<AudioControls 
 						onPlay={this.confirmConsumption} 
-						src={this.props.streamUrl} />			
-					<TrackInfo 
-						trackTitle={this.props.trackTitle}
-						artistName={this.props.artistName} />			
+						src={this.props.streamUrl} />
+						{
+							this.props.streamUrl ? 
+								<TrackInfo 
+								trackTitle={this.props.trackTitle}
+								artistName={this.props.artistName} />
+								: <span className='player-message'>Select an artist's track</span>
+						}			
+								
 				</div>
 			</div>
 		)
@@ -46,7 +51,6 @@ class Player extends React.Component {
 const mapStateToProps = function(state, ownProps) {
 	return {
 		streamUrl: state.playingTrack.url,
-		currentTrackId: state.playingTrack.id,
 		trackTitle: state.playingTrack.title,
 		artistName: state.playingTrack.artistName
 	}

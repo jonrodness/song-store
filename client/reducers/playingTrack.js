@@ -2,10 +2,9 @@ import _ from 'lodash'
 import { SET_PLAY_TRACK } from '../actions'
 
 const playingTrack = (state = {
-	url: null,
-	title: null,
-	artistName: 'Select a track',
-	id: null
+	url: '',
+	title: '',
+	artistName: '',
 }, action) => {
 	switch (action.type) {
 		case SET_PLAY_TRACK:
@@ -13,7 +12,6 @@ const playingTrack = (state = {
 				url: action.url,
 				title: action.title,
 				artistName: action.artistName,
-				id: action.id
 			})
 		default:
 			return state

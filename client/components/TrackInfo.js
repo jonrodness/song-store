@@ -3,11 +3,6 @@ import React from 'react';
 class TrackInfo extends React.Component {
 	constructor(props) {
 		super(props)
-
-		this.state = {
-			currentTrackUrl: null,
-			currentTrackId: null			
-		}
 	}
 
 	render() {

@@ -43,7 +43,7 @@ module.exports = {
 				res.json(usersRes);
 			}
 		});
-	},	
+	},
 
 	getArtistTracks: function(req, res) {
 		var userId = req.params.userId;

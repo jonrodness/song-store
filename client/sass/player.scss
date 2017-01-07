@@ -24,12 +24,24 @@
 	background-color: rgb(20, 20, 20);
 }
 
+.player-message,
+.track-info span {
+	flex: 1;
+	text-align: center;
+	font-size: 15px;
+	font-family: "Quicksand";
+	font-weight: bold;
+	letter-spacing: 1.2px;
+	line-height: 29px;
+	overflow: hidden;	
+	color: rgb(200, 200, 200);
+}
+
 .track-info {
 	flex: 1;
 	display: flex;
 	margin-right: 5px;
 	margin-left: 5px;
-
 
 	div {
 		flex: 1;
@@ -38,18 +50,12 @@
 		display: block;
 		margin-right: 20px;
 		margin-left: 20px;
-		font-size: 15px;
-		font-family: "Quicksand";
-		font-weight: bold;
-		letter-spacing: 1.2px;
-		line-height: 29px;
-		overflow: hidden;
 	}
 
 	.artist {
 		flex: 1;
 		text-align: right;
-		color: rgb(240, 240, 240);		
+		color: rgb(200, 200, 200);
 	}
 
 	.title {
