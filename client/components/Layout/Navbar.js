@@ -40,10 +40,17 @@ class AppNavbar extends React.Component {
 		auth.deauthenticateUser()
 		browserHistory.push('/')					
 	}
+	gotoArtists() {
+		browserHistory.push('/artists')		
+	}
+	gotoMyTracks() {
+		let myProfileURL = '/artists/' + auth.getToken()		
+		browserHistory.push(myProfileURL)		
+	}
 	render() {
 		let signupTitle = "Sign up"
 		let loginTitle = "Login"
-		let myProfileURL = "/artists/" + auth.getToken()
+
 		return (
 			<div>
 			  <Navbar className='navbar'>
@@ -55,11 +62,11 @@ class AppNavbar extends React.Component {
 			    </Navbar.Header>
 			    <Navbar.Collapse>
 			      <Nav>
-			        <NavItem eventKey={2}><IndexLink to='/artists'>Artists</IndexLink></NavItem>
+					<NavItem eventKey={1} onClick={this.gotoArtists}>Artists</NavItem>
 			        {
 			        	this.props.isUserLoggedIn ? 
 			        	(
-			        	<NavItem eventKey={3}><IndexLink to={myProfileURL}>My Tracks</IndexLink></NavItem>			        	
+			        	<NavItem eventKey={1} onClick={this.gotoMyTracks}>MyTracks</NavItem>		        	
 			        	) 
 			        	: null
 			    	}

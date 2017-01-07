@@ -5,14 +5,18 @@ import auth from '../auth';
 class OAuth extends React.Component {
 	constructor(props) {
 		super(props)
+	}
+
+	componentWillMount() {
 		let result = this.props.params.result
 		if (result) {
 			auth.authenticateUser(result)
 			browserHistory.push('/artists')
 		} else {
 			browserHistory.push('/home')			
-		}
+		}		
 	}
+
 	render() {
 		return null
 	}
