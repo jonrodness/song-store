@@ -13,11 +13,16 @@ var port = isProduction ? process.env.PORT : 3000;
 var passport = require('passport');
 var session = require('express-session');
 var mongoose = require('mongoose');
-var Sequelize = require('sequelize');
 
 var authRoutes = require('./server/routes/auth');
 var indexRoutes = require('./server/routes/index');
 var apiRoutes = require('./server/routes/api');
+
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser')
+var cookieSession = require('cookie-session');
+
+var local = require('./local');
 
 if (!isProduction) {
 	// do not use hot middleware during production
@@ -42,14 +47,15 @@ if (!isProduction) {
 	}));
 }
 
-// TODO: update for production
-mongoose.connect('mongodb://localhost/song-store');
 
-app.use(session({
-	secret: 'make random later',
-	resave: false, 
-	saveUninitialized: true
-}));
+var mongoUrl = 'mongodb://' + local.mongoLab.userName + ':' + local.mongoLab.password + '@ds157278.mlab.com:57278/songstash';
+mongoose.connect(mongoUrl);
+
+app.use(express.static(publicPath));
+
+app.use(cookieParser('music'));
+app.use(bodyParser());
+app.use(session({ secret: 'music' }));
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -63,15 +69,10 @@ app.use('/', indexRoutes);
 app.use('/api', apiRoutes);
 app.use('/auth', authRoutes);
 
-app.use(express.static(publicPath));
-
-// by default send index.html
+// By default send index.html
 app.get('*', function (request, response){
   response.sendFile(path.resolve(__dirname, 'static', 'index.html'))
 })
-
-// require('./models')(config);
-// require('./passport')(config);
 
 app.listen(port, function() {
 	console.log('Song Store listening on port ' + port);
